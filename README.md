@@ -294,3 +294,228 @@ npm run build
 ### Smart Contract Functionality
 
 #### `create_camp
+## 📊 API Reference
+
+### Smart Contract Functions
+
+#### `create_campaign`
+Creates a new charity campaign.
+
+```move
+public entry fun create_campaign(
+registry: &mut CampaignRegistry,
+
+title: vector<u8>,
+
+description: vector<u8>,
+
+goal: u64,
+
+deadline: u64,
+
+beneficiary: address,
+
+ctx: &mut TxContext
+
+```
+**Parameters:**
+
+- `title` - Campaign title (bytes)
+
+- `goal` - Fundraising goal (SUI)
+
+- `deadline` - End time (Unix timestamp)
+
+- `beneficiary` - Beneficiary
+
+**Event Release:**
+
+- `CampaignCreated` - Record campaign creation
+
+---
+#### `donate`
+Donate to the campaign.
+
+```move
+public entry fun donate(
+campaign: &mut Campaign,
+
+payment: Coin<SUI>,
+
+ctx: &mut TxContext
+)
+```
+**Parameters:**
+- `campaign` - Campaign for receiving donations
+- `payment` - Coin<SUI>
+
+**Event Release:**
+
+- `DonationReceived` - Record the donation
+
+---
+
+#### `withdraw_funds`
+Withdraw money from the campaign.
+
+```move
+public entry fun withdraw_funds(
+campaign: &mut Campaign,
+
+ctx: &mut TxContext
+)
+```
+**Permissions:**
+
+- Only the creator or beneficiary
+
+**Event Release:**
+
+- `FundsWithdrawn` - Record the withdrawal
+
+---
+#### `get_campaign_info`
+Get campaign information.
+
+```move
+public fun get_campaign_info(campaign: &Campaign): (
+vector<u8>, // title
+vector<u8>, // description
+address, // creator
+u64, // goal
+u64, // raised
+u64, // deadline
+address, // beneficiary
+u64 // created_at
+)
+```
+
+---
+## 🧪 Testing
+### Running Tests
+
+```bash
+cd move
+
+# Run all tests
+sui move test
+# Run specific test
+sui move test --filter test_create_campaign
+```
+
+### Existing Tests
+
+- `test_create_campaign` - Create campaign
+- `test_donate` - Donate
+- `test_withdraw_funds` - Withdraw funds
+- `test_validations` - Validation test
+---
+## 🐛 Troubleshooting
+
+### Error: "Insufficient gas"
+```bash
+# Increase gas budget
+sui client publish --gas-budget 200000000
+```
+
+### Error: "Wallet not connected"
+```
+1. Check if the wallet is connected
+2. Switch to testnet if necessary
+3. Reload the page
+```
+
+### Error: "Contract address not found"
+```
+1. Ensure the contract is published
+2. Update PACKAGE_ID in constants.ts
+3. Use the address from `deploy_output.txt`
+```
+
+---
+## 📚 Additional Documentation
+
+- [Sui Official Docs](https://docs.sui.io)
+
+- [Move Language Guide](https://move-language.github.io)
+
+- [Sui Testnet Faucet](https://faucet.testnet.sui.io)
+
+- [Sui Explorer](https://testnet.suivision.xyz)
+
+---
+
+## 🤝 Contributions
+
+We welcome contributions! To get started:
+
+1. Fork repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+
+5. Open a Pull Request
+
+---
+## 📝 License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👥 Author
+
+**Charity DApp Development Team**
+
+- Van Hien University
+
+- Participation: Mini Hackathon - Sui Learning Tour
+
+---
+
+## 📞 Contact & Support
+
+- 📧 Email: [your.email@vanhien.edu.vn]
+
+- 🐙 GitHub: [https://github.com/yourusername/charity-dapp]
+
+- 💬 Discord: [Community link if available]
+
+---
+## 🙏 Thanks
+
+- **Sui Foundation** - Support and documentation
+- **Van Hien University** - Sponsorship and guidance
+- **Sui Community** - Feedback and support
+
+---
+
+## 🎯 Future Roadmap
+
+- [ ] Campaign category system
+
+- [ ] Sponsor ranking
+
+- [ ] Email notifications
+
+- [ ] Analytics dashboard
+
+- [ ] Multilingual support
+- [ ] Mobile application
+- [ ] DAO integration
+
+---
+
+**Made with ❤️ for Charity and Blockchain Community**
+
+---
+
+## Changelog
+
+### v1.0.0 (2025-12-26)
+- ✅ MVP completed
+- ✅ Smart contracts deployed
+- ✅ Frontend officially launched
+- ✅ Full documentation
